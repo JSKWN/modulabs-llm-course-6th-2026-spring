@@ -1,12 +1,4 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# 처음 네가 말해줬던 1주차 내용 정리에, 새로운 응답 내용을 보충해서 종합본을 md파일로 작성해줘
-
-아래 내용을 그대로 복사해서 `1주차 학습 내용 정리 (종합본).md` 파일로 저장하시면 됩니다.
-
-***
-
-````markdown
 # 📚 LLM 교육과정 1주차 학습 내용 정리 (종합본)
 
 > **교육 기간**: 2026-03-10 ~ 2026-03-14 (5일차)  
