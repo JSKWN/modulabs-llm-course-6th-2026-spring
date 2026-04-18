@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python3)",
       "Bash(python -u -c ':*)",
-      "Bash(python -u)"
+      "Bash(python -u)",
+      "Bash(python3 -c ':*)",
+      "Bash(python3 restructure_nb.py)"
     ]
   }
 }
