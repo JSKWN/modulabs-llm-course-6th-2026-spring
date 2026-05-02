@@ -24,7 +24,7 @@
 
 ### 환경 설정 및 API 키 로드
 
-실습에서는 Google Colab Secrets를 통해 API 키를 안전하게 불러왔습니다.[^4][^1]
+실습에서는 Google Colab Secrets를 통해 API 키를 안전하게 불러옴.[^4][^1]
 
 ```python
 from google.colab import userdata
@@ -89,7 +89,7 @@ response = client.chat.completions.create(
 
 ### 스트리밍 및 다중 턴 대화 유지
 
-OpenAI API는 **Stateless**이므로 대화 이력을 messages 리스트에 직접 누적해야 합니다.[^1]
+OpenAI API는 **Stateless**이므로 대화 이력을 messages 리스트에 직접 누적해야 함.[^1]
 
 ```python
 # 스트리밍
@@ -188,7 +188,7 @@ branch = RunnableBranch(
 
 ## 🎨 STAGE 3: Gradio UI 구축
 
-Gradio는 3가지 방식으로 UI를 만들 수 있습니다.[^5]
+Gradio는 3가지 방식으로 UI를 만들 수 있음.[^5]
 
 ```python
 # gr.Interface — 단순 함수 래핑
@@ -231,11 +231,9 @@ demo = gr.ChatInterface(
 demo.launch(share=True)
 ```
 
-> **주의**: `type="messages"` 설정을 빠뜨리면 `UserWarning: The tuples format is deprecated` 경고가 발생합니다.
+> **주의**: `type="messages"` 설정을 빠뜨리면 `UserWarning: The tuples format is deprecated` 경고가 발생함.
 
 ***
-
-`.md` 파일(`1주차 학습 내용 정리.md`)이 다운로드 가능한 파일로 저장되어 있으니 확인해보세요 . 추가로 특정 부분을 더 자세히 보충하거나, 4일차 `PydanticOutputParser`나 `bind()` 관련 내용을 별도로 깊이 있게 정리해 드릴 수도 있습니다.
 
 <div align="center">⁂</div>
 
