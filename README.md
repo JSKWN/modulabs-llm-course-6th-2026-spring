@@ -15,9 +15,15 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
 - [x] **[프로젝트 1] 주택청약 FAQ 챗봇 시스템 구현** (1~3주차)
   - LangChain 기반의 지능형 QA 애플리케이션 구축
   - 문서 전처리, RAG 파이프라인 구성 및 Gradio 웹 UI 연동
-- [ ] **[프로젝트 2] 검색형 RAG 기반 금융 상품 추천 시스템 구현** (진행 예정)
-- [ ] **[프로젝트 3] 법률 문서 기반 검색 에이전트 시스템 구축** (진행 예정)
-- [ ] **[프로젝트 4] 생성형 AI를 활용한 비정형 문서 기반 RAG 서비스 구축** (진행 예정)
+- [x] **[프로젝트 2] 검색형 RAG 기반 금융 상품 추천 시스템 구현** (4~6주차)
+  - RAG 검색 성능 평가 (HitRate, MRR, NDCG) 및 하이브리드 검색, Re-rank 적용
+  - LLM-as-Judge 기반 답변 품질 평가 및 금융 상품(ETF) 추천 시스템 구현
+- [x] **[프로젝트 3] 법률 문서 기반 검색 에이전트 시스템 구축** (7~9주차)
+  - Tool Calling, LangGraph 기반 ReAct 에이전트, Human-in-the-Loop 구현
+  - Adaptive RAG, Self-RAG, C-RAG 등 고급 RAG 패턴 적용
+- [ ] **[프로젝트 4] 생성형 AI를 활용한 비정형 문서 기반 RAG 서비스 구축** (10~12주차, 진행 중)
+  - 언어모델 파인튜닝 (OpenAI Fine-tuning API, HuggingFace LoRA)
+  - 비정형 문서 파싱 (unstructured), 테이블 추출, Vision OCR
 
 <br>
 
