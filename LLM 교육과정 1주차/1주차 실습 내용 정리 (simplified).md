@@ -1,11 +1,8 @@
-***
 
-# 📚 LLM 교육과정 1주차 학습 내용 정리
+# LLM 교육과정 1주차 학습 내용 정리
 
-> **교육 기간**: 2026-03-10 ~ 2026-03-14 (5일차)
-> **핵심 라이브러리**: `openai`, `langchain-openai`, `langchain-core`, `gradio`
-
-***
+> 교육 기간: 2026-03-10 ~ 2026-03-14 (5일차)
+> 핵심 라이브러리: `openai`, `langchain-openai`, `langchain-core`, `gradio`
 
 ## 전체 학습 흐름
 
@@ -17,10 +14,7 @@
 | 4일차 | 03-13 | LangChain 심화 (invoke/stream/batch, PromptTemplate, OutputParser, bind) [^3] |
 | 5일차 | 03-14 | LCEL 체인 패턴 (Runnable*) + Gradio UI + LLM 챗봇 완성 [^5] |
 
-
-***
-
-## 🔑 STAGE 1: OpenAI API 직접 호출
+## 1. OpenAI API 직접 호출
 
 ### 환경 설정 및 API 키 로드
 
@@ -34,7 +28,7 @@ api_key = userdata.get('OPENAI_API_KEY')
 os.environ["OPENAI_API_KEY"] = api_key  # 환경변수로 등록하면 OpenAI() 자동 인식
 ```
 
-> **핵심**: `os.environ["OPENAI_API_KEY"]`를 먼저 실행하면, `OpenAI()`나 `ChatOpenAI()` 초기화 시 `api_key` 인자 없이도 자동으로 키를 가져옴.
+> 핵심: `os.environ["OPENAI_API_KEY"]`를 먼저 실행하면, `OpenAI()`나 `ChatOpenAI()` 초기화 시 `api_key` 인자 없이도 자동으로 키를 가져옴.
 
 ### 기본 API 호출 및 응답 구조
 
@@ -54,10 +48,9 @@ print(response.choices[^0].finish_reason)     # stop / length / content_filter
 
 `response` 객체 주요 필드:[^1]
 
-- `response.choices[^0].message.content` — 실제 응답 텍스트
-- `response.choices[^0].finish_reason` — `stop`(정상), `length`(max_tokens 초과)
-- `response.usage.total_tokens` — prompt + completion 토큰 합계
-
+- `response.choices[^0].message.content`: 실제 응답 텍스트
+- `response.choices[^0].finish_reason`: `stop`(정상), `length`(max_tokens 초과)
+- `response.usage.total_tokens`: prompt + completion 토큰 합계
 
 ### role 시스템
 
@@ -68,7 +61,6 @@ messages=[
     {"role": "assistant", "content": "(이전 AI 응답)"}  # 대화 유지에 사용
 ]
 ```
-
 
 ### 생성 파라미터[^1]
 
@@ -86,7 +78,6 @@ response = client.chat.completions.create(
 )
 ```
 
-
 ### 스트리밍 및 다중 턴 대화 유지
 
 OpenAI API는 **Stateless**이므로 대화 이력을 messages 리스트에 직접 누적해야 함.[^1]
@@ -103,10 +94,7 @@ for chunk in response:
 messages.append({"role": "assistant", "content": answer1})
 ```
 
-
-***
-
-## 🔗 STAGE 2: LangChain 활용
+## 2. LangChain 활용
 
 ### OpenAI API vs LangChain 비교
 
@@ -136,7 +124,6 @@ for answer in results:
     print(answer.content)
 ```
 
-
 ### LCEL 체인 핵심 패턴[^5]
 
 ```
@@ -163,7 +150,6 @@ result = chain.invoke({"role": "IT 전문가", "style": "간결한", "question":
 print(result)  # 문자열 직접 반환
 ```
 
-
 ### Runnable 클래스 4종[^5]
 
 | 클래스 | 용도 | 사용 예 |
@@ -183,10 +169,7 @@ branch = RunnableBranch(
 )
 ```
 
-
-***
-
-## 🎨 STAGE 3: Gradio UI 구축
+## 3. Gradio UI 구축
 
 Gradio는 3가지 방식으로 UI를 만들 수 있음.[^5]
 
@@ -204,7 +187,6 @@ with gr.Blocks() as demo:
         btn = gr.Button("전송")
     btn.click(fn=process, inputs=input_text, outputs=output_text)
 ```
-
 
 ### LLM 챗봇 최종 완성 패턴 (LangChain + Gradio)[^5]
 
@@ -231,9 +213,7 @@ demo = gr.ChatInterface(
 demo.launch(share=True)
 ```
 
-> **주의**: `type="messages"` 설정을 빠뜨리면 `UserWarning: The tuples format is deprecated` 경고가 발생함.
-
-***
+> 주의: `type="messages"` 설정을 빠뜨리면 `UserWarning: The tuples format is deprecated` 경고가 발생함.
 
 <div align="center">⁂</div>
 
@@ -246,4 +226,3 @@ demo.launch(share=True)
 [^4]: 2026-03-10-LLM-gyoyuggwajeong-1juca-1casi-silseub-4.ipynb
 
 [^5]: 2026-03-14-LLM-gyoyuggwajeong-1juca-5casi-silseub-3.ipynb
-

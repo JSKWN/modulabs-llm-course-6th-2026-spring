@@ -1,19 +1,13 @@
 # modulabs-llm-course-6th-2026-spring
 AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 교육/실습/프로젝트)
 
-# 🚀 AI/LLM 서비스 개발 과정 (모두의연구소)
-
-![Course](https://img.shields.io/badge/Course-모두의연구소-blue?style=flat-square)
-![Duration](https://img.shields.io/badge/Duration-12Weeks-green?style=flat-square)
-![Tech Stack](https://img.shields.io/badge/Tech-LangChain%20%7C%20RAG%20%7C%20Gradio-orange?style=flat-square)
+# AI/LLM 서비스 개발 과정 (모두의연구소)
 
 모두의연구소 "AI/LLM 서비스 개발 과정"의 프로젝트 및 실습 코드.
 
-<br>
-
-## 📌 현재 진행 및 완료 프로젝트
+## 현재 진행 및 완료 프로젝트
 - [x] **[프로젝트 1] 주택청약 FAQ 챗봇 시스템 구현** (1~3주차)
-  - LangChain 기반의 지능형 QA 애플리케이션 구축
+  - LangChain 기반의 QA 애플리케이션 구축
   - 문서 전처리, RAG 파이프라인 구성 및 Gradio 웹 UI 연동
 - [x] **[프로젝트 2] 검색형 RAG 기반 금융 상품 추천 시스템 구현** (4~6주차)
   - RAG 검색 성능 평가 (HitRate, MRR, NDCG) 및 하이브리드 검색, Re-rank 적용
@@ -25,20 +19,15 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
   - 언어모델 파인튜닝 (OpenAI Fine-tuning API, HuggingFace LoRA)
   - 비정형 문서 파싱 (unstructured), 테이블 추출, Vision OCR
 
-<br>
-
-## 📅 전체 커리큘럼 개요
+## 전체 커리큘럼 개요
 - **교육 기간** : 2026. 03. 10 ~ 2026. 06. 13
 - **총 학습 시간** : 204시간
 - **핵심 기술** : `Python`, `LangChain`, `RAG`, `Vector DB`, `Agent`, `LangGraph`, `Gradio`
 
-<br>
-
 <details>
-<summary><b>📖 상세 커리큘럼 일정표 (클릭하여 펼치기)</b></summary>
-<br>
+<summary><b>상세 커리큘럼 일정표 (클릭하여 펼치기)</b></summary>
 
-### 🟢 [프로젝트 1] LangChain 활용 지능형 FAQ 챗봇 애플리케이션
+### [프로젝트 1] LangChain 활용 FAQ 챗봇 애플리케이션
 | 주차 (유닛) | 일자 | 핵심 주제 | 학습 노드 (상세 내용) | 시간 |
 |:---:|:---:|:---|:---|:---:|
 | **1주차** | 03. 10 | **LangChain 기초** | OT + 아이스브레이킹 + [프로젝트1] 안내 | 2.5 |
@@ -57,9 +46,7 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
 | | 03. 27 | | 대화 이력 관리를 위한 메모리 구현(Chat History) | 2.5 |
 | | 03. 28 | | 주택청약 FAQ 시스템 챗봇 구현 (문서 전처리 + RAG + Gradio) | 7 |
 
-<br>
-
-### 🔵[프로젝트 2] 검색형 RAG 기반 금융 상품 추천 시스템 구현
+### [프로젝트 2] 검색형 RAG 기반 금융 상품 추천 시스템 구현
 | 주차 (유닛) | 일자 | 핵심 주제 | 학습 노드 (상세 내용) | 시간 |
 |:---:|:---:|:---|:---|:---:|
 | **4주차** | 03. 31 | **RAG 검색 성능 평가<br>및 개선** | [프로젝트2] 안내 + RAG 성능평가 개요 | 2.5 |
@@ -78,9 +65,7 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
 | | 04. 17 | | 추천 시스템 - 추천 로직 구현 | 2.5 |
 | | 04. 18 | | 추천 시스템 Gradio 인터페이스 구현 + Huggingface Space에 앱 배포 | 7 |
 
-<br>
-
-### 🟠 [프로젝트 3] 법률 문서 기반 검색 에이전트 시스템 구축
+### [프로젝트 3] 법률 문서 기반 검색 에이전트 시스템 구축
 | 주차 (유닛) | 일자 | 핵심 주제 | 학습 노드 (상세 내용) | 시간 |
 |:---:|:---:|:---|:---|:---:|
 | **7주차** | 04. 21 | **LangChain 도구(Tool)<br>활용** | [프로젝트3] 안내 + Tool Calling + 에이전트(Agent) 개념 | 2.5 |
@@ -100,9 +85,7 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
 | | 05. 15 | | Self RAG 구현 2 | 2.5 |
 | | 05. 16 | | Corrective RAG 구현 + Gradio 인터페이스에 에이전트 시스템 반영 | 7 |
 
-<br>
-
-### 🟣 [프로젝트 4] 생성형 AI를 활용한 비정형 문서 기반의 RAG 서비스 구축
+### [프로젝트 4] 생성형 AI를 활용한 비정형 문서 기반의 RAG 서비스 구축
 | 주차 (유닛) | 일자 | 핵심 주제 | 학습 노드 (상세 내용) | 시간 |
 |:---:|:---:|:---|:---|:---:|
 | **10주차**| 05. 19 | **비정형 문서 처리** | [프로젝트4] 안내 + 언어모델 파인튜닝 1 | 2.5 |

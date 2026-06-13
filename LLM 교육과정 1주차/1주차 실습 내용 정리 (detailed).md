@@ -1,13 +1,11 @@
 
-# 📚 LLM 교육과정 1주차 학습 내용 정리 (종합본)
+# LLM 교육과정 1주차 학습 내용 정리
 
-> **교육 기간**: 2026-03-10 ~ 2026-03-14 (5일차)  
-> **사용 환경**: Google Colab (Python 3.12)  
-> **핵심 라이브러리**: `openai`, `langchain-openai`, `langchain-core`, `gradio`
+- 교육 기간: 2026-03-10 ~ 2026-03-14 (5일차)
+- 사용 환경: Google Colab (Python 3.12)
+- 핵심 라이브러리: `openai`, `langchain-openai`, `langchain-core`, `gradio`
 
----
-
-## 📌 전체 학습 흐름 요약
+## 전체 학습 흐름 요약
 
 | 단계 | 날짜 | 핵심 내용 |
 |------|------|-----------|
@@ -17,9 +15,7 @@
 | 4일차 | 03-13 | LangChain 심화 (invoke/stream/batch, PromptTemplate, OutputParser, bind) |
 | 5일차 | 03-14 | LCEL 체인 패턴 (Runnable*) + Gradio UI 구축 + LLM 챗봇 완성 |
 
----
-
-## 🔑 STAGE 1: OpenAI API 직접 호출
+## 1. OpenAI API 직접 호출
 
 ### 1-1. 환경 설정 및 API 키 로드
 
@@ -38,10 +34,8 @@ load_dotenv()                              # .env 파일에서 OPENAI_API_KEY �
 api_key = os.getenv("OPENAI_API_KEY")
 ```
 
-> **핵심**: `os.environ["OPENAI_API_KEY"] = api_key`를 먼저 실행하면,
+> `os.environ["OPENAI_API_KEY"] = api_key`를 먼저 실행하면,
 > `OpenAI()`나 `ChatOpenAI()` 초기화 시 `api_key` 인자 없이도 자동으로 키를 인식함.
-
----
 
 ### 1-2. OpenAI 클라이언트 생성 및 기본 호출
 
@@ -76,8 +70,6 @@ print(response.choices.finish_reason)    # 종료 이유
 | `response.usage.total_tokens` | prompt + completion 토큰 합계 |
 | `response.id` | 요청 고유 ID |
 
----
-
 ### 1-3. role 시스템
 
 ```python
@@ -104,8 +96,6 @@ response = client.chat.completions.create(
 | `user` | 사용자의 입력 |
 | `assistant` | AI의 이전 응답 (다중 턴 대화 유지에 사용) |
 | `tool` | 함수 호출 결과 (Function Calling) |
-
----
 
 ### 1-4. 생성 파라미터 실험
 
@@ -134,8 +124,6 @@ response = client.chat.completions.create(
 
 > `o1` 계열 모델은 temperature, top_p가 1.0으로 고정되어 변경 불가
 
----
-
 ### 1-5. 스트리밍 출력
 
 ```python
@@ -154,8 +142,6 @@ for chunk in response:
         print(text, end="", flush=True)  # end="": 줄바꿈 없이 이어 출력
         full_answer += text              # 전체 응답 누적
 ```
-
----
 
 ### 1-6. 다중 턴 대화 유지 (Multi-turn)
 
@@ -180,8 +166,6 @@ question2 = "그렇다면 어떻게 설치하나요?"
 messages.append({"role": "user", "content": question2})
 # ... 이후 반복
 ```
-
----
 
 ### 1-7. 토크나이저 (tiktoken / BPE)
 
@@ -211,9 +195,7 @@ for t in tokens:
 | OOV 해결 | 미등록어도 서브워드로 분해하여 처리 가능 |
 | 사용처 | GPT, Llama, Mistral 등 대부분의 LLM |
 
----
-
-## 📦 핵심 라이브러리 역할 이해
+## 핵심 라이브러리 역할 이해
 
 ### 3개 라이브러리의 관계와 역할
 
@@ -229,9 +211,7 @@ ChatPromptTemplate   ← "어떤 형식으로 LLM에게 물어볼지" 정의
 [최종 문자열 출력]
 ```
 
----
-
-### `langchain_openai` — ChatOpenAI
+### `langchain_openai` (ChatOpenAI)
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -243,11 +223,9 @@ from langchain_openai import ChatOpenAI
 - LangChain의 `|` 체인 연산자에 연결 가능한 형태로 만들어줌
 - `invoke`, `stream`, `batch` 같은 **통일된 인터페이스** 제공
 
-> **비유**: 레거시 전화기(OpenAI 직접 호출) → 스마트폰 앱(ChatOpenAI). 기능은 같지만 다른 것들과 연동이 훨씬 쉬워짐.
+> 비유: 레거시 전화기(OpenAI 직접 호출) → 스마트폰 앱(ChatOpenAI). 기능은 같지만 다른 것들과 연동이 훨씬 쉬워짐.
 
----
-
-### `langchain_core.prompts` — ChatPromptTemplate
+### `langchain_core.prompts` (ChatPromptTemplate)
 
 ```python
 from langchain_core.prompts import ChatPromptTemplate
@@ -259,11 +237,9 @@ from langchain_core.prompts import ChatPromptTemplate
 - system / human / assistant 역할 구조를 코드로 깔끔하게 관리
 - 체인에서 LLM 앞단에 붙어 입력을 정제해주는 역할
 
-> **비유**: 매번 손으로 편지를 쓰는 대신 → 양식지(template)를 만들어두고 빈칸만 채워 넣는 방식.
+> 비유: 매번 손으로 편지를 쓰는 대신 → 양식지(template)를 만들어두고 빈칸만 채워 넣는 방식.
 
----
-
-### `langchain_core.output_parsers` — StrOutputParser
+### `langchain_core.output_parsers` (StrOutputParser)
 
 ```python
 from langchain_core.output_parsers import StrOutputParser
@@ -274,11 +250,9 @@ from langchain_core.output_parsers import StrOutputParser
 - `llm.invoke()`의 반환값은 `AIMessage` 객체 (텍스트 외에 메타데이터 등이 가득함)
 - 체인 끝에 붙이면 자동으로 `.content` 텍스트만 꺼내줌
 
-> **비유**: 택배 박스(AIMessage 전체) → 박스 개봉기(StrOutputParser) → 상품 본체(content 문자열)
+> 비유: 택배 박스(AIMessage 전체) → 박스 개봉기(StrOutputParser) → 상품 본체(content 문자열)
 
----
-
-## 🔗 STAGE 2: LangChain 활용
+## 2. LangChain 활용
 
 ### 2-1. 설치 및 패키지 구조
 
@@ -292,8 +266,6 @@ from langchain_core.output_parsers import StrOutputParser
 | `langchain-openai` | OpenAI 전용 래퍼 (`ChatOpenAI`) |
 | `langchain-community` | 써드파티 통합 (다양한 LLM, 도구, 벡터DB 등) |
 | `langchain-core` | 기본 추상화 클래스 (Message, Runnable, Parser 등) |
-
----
 
 ### 2-2. 3가지 실행 방식: invoke / stream / batch
 
@@ -322,8 +294,6 @@ for answer in results:
     print()
 ```
 
----
-
 ### 2-3. 메시지 클래스 활용
 
 ```python
@@ -345,8 +315,6 @@ response = llm.invoke(messages)
 print(response.content)
 print(response.response_metadata)  # 토큰 수, 모델명, 요청 ID 등
 ```
-
----
 
 ### 2-4. LCEL 체인 구성 (핵심 패턴)
 
@@ -398,8 +366,6 @@ print(result)       # 순수 문자열(str) 반환
 print(type(result)) # <class 'str'>
 ```
 
----
-
 ### 2-5. 파서 유무 비교
 
 ```python
@@ -427,9 +393,7 @@ print(result_clean)         # 바로 사용 가능
 | `ChatOpenAI` | `ChatPromptValue` 또는 메시지 리스트 | `AIMessage` (객체) | LLM 호출 불가 |
 | `StrOutputParser` | `AIMessage` | `str` (텍스트만) | `.content` 매번 수동 접근 |
 
----
-
-### 2-6. bind() — 파라미터 고정
+### 2-6. bind() (파라미터 고정)
 
 ```python
 # bind(): LLM에 파라미터를 미리 고정해 두는 방법
@@ -448,8 +412,6 @@ response = llm_json.invoke([
 import json
 data = json.loads(response.content)  # 문자열 → Python dict로 파싱
 ```
-
----
 
 ### 2-7. Runnable 클래스 4종
 
@@ -497,7 +459,7 @@ for q in questions:
     print(f"A: {branch.invoke({'question': q})}\n")
 ```
 
-> **lambda 개념**:
+> lambda 개념:
 > `lambda x: x + 1` ↔ `def add_one(x): return x + 1`
 > 간단한 함수를 한 줄로 표현할 때 사용. RunnableBranch의 조건 함수처럼 일회성 함수에 유용.
 
@@ -510,9 +472,7 @@ for q in questions:
 | `RunnablePassthrough` | 입력 그대로 전달 | 입력값 유지하며 다음 단계로 |
 | `RunnableBranch` | 조건 분기 | 질문 종류에 따라 다른 체인 실행 |
 
----
-
-### 2-8. PydanticOutputParser — 구조화 출력
+### 2-8. PydanticOutputParser (구조화 출력)
 
 ```python
 from langchain_core.output_parsers import PydanticOutputParser
@@ -549,11 +509,9 @@ print(result.rating)      # 5
 print(result.recommended) # True
 ```
 
----
+## 3. Gradio UI 구축
 
-## 🎨 STAGE 3: Gradio UI 구축
-
-### 3-1. gr.Interface — 단순 함수 인터페이스
+### 3-1. gr.Interface (단순 함수 인터페이스)
 
 ```python
 import gradio as gr
@@ -573,9 +531,7 @@ demo1.launch()   # Colab에서는 자동으로 share=True 설정됨
 demo1.close()    # 서버 종료
 ```
 
----
-
-### 3-2. gr.ChatInterface — 챗봇 UI
+### 3-2. gr.ChatInterface (챗봇 UI)
 
 ```python
 # fn 함수는 반드시 (message, history) → str 시그니처를 가져야 함
@@ -595,9 +551,7 @@ demo2 = gr.ChatInterface(
 demo2.launch()
 ```
 
----
-
-### 3-3. gr.Blocks — 커스텀 레이아웃
+### 3-3. gr.Blocks (커스텀 레이아웃)
 
 ```python
 # Blocks: Row/Column으로 UI 자유 배치 + 이벤트 연결
@@ -628,8 +582,6 @@ with gr.Blocks(title="커스텀 레이아웃") as demo3:
 
 demo3.launch()
 ```
-
----
 
 ### 3-4. LLM + Gradio 챗봇 완성 (핵심 패턴)
 
@@ -669,8 +621,6 @@ demo = gr.ChatInterface(
 
 demo.launch(share=True)  # share=True: 외부 접속 가능한 공개 URL 생성
 ```
-
----
 
 ### 3-5. LangChain 체인 + Gradio 챗봇 (FAQ 버전)
 
@@ -735,9 +685,7 @@ demo = gr.ChatInterface(
 demo.launch(share=True)
 ```
 
----
-
-## 🐍 Python 기초 문법 정리 (2일차)
+## Python 기초 문법 정리 (2일차)
 
 ### 자료형 및 변수
 
@@ -854,9 +802,7 @@ with open("sample_output/chat.json", "r", encoding="utf-8") as f:
     loaded = json.load(f)  # JSON 문자열 → Python 객체(list/dict)
 ```
 
----
-
-## 📊 OpenAI API 직접 호출 vs LangChain 비교
+## OpenAI API 직접 호출 vs LangChain 비교
 
 | 항목 | OpenAI API 직접 호출 | LangChain |
 |------|---------------------|-----------|
@@ -870,9 +816,7 @@ with open("sample_output/chat.json", "r", encoding="utf-8") as f:
 | **체인 연결** | 수동 코드 작성 | `prompt \| llm \| parser` (LCEL) |
 | **적합한 용도** | 단순 호출, 파라미터 세밀 제어 | 복잡한 체인, 프로덕션 앱 개발 |
 
----
-
-## 🧠 핵심 개념 요약
+## 핵심 개념 요약
 
 ### LCEL 패턴 암기
 
@@ -899,9 +843,3 @@ dict → ChatPromptValue → AIMessage → str
 챗봇 UI                    → gr.ChatInterface  (type="messages" 필수)
 복잡한 레이아웃             → gr.Blocks (Row/Column 자유 배치)
 ```
-
----
-
-*본 문서는 2026-03-10 ~ 2026-03-14 교육과정 실습 파일을 바탕으로 작성되었습니다.*
-````
-
