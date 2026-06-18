@@ -5,7 +5,7 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
 
 모두의연구소 "AI/LLM 서비스 개발 과정"의 프로젝트 및 실습 코드.
 
-## 현재 진행 및 완료 프로젝트
+## 프로젝트 목록
 - [x] **[프로젝트 1] 주택청약 FAQ 챗봇 시스템 구현** (1~3주차)
   - LangChain 기반의 QA 애플리케이션 구축
   - 문서 전처리, RAG 파이프라인 구성 및 Gradio 웹 UI 연동
@@ -15,12 +15,12 @@ AI/LLM 서비스 개발 과정 (LangChain, Agent, RAG, LangGraph, GraphRAG 등 �
 - [x] **[프로젝트 3] 법률 문서 기반 검색 에이전트 시스템 구축** (7~9주차)
   - Tool Calling, LangGraph 기반 ReAct 에이전트, Human-in-the-Loop 구현
   - Adaptive RAG, Self-RAG, C-RAG 등 고급 RAG 패턴 적용
-- [ ] **[프로젝트 4] 생성형 AI를 활용한 비정형 문서 기반 RAG 서비스 구축** (10~12주차, 진행 중)
+- [x] **[프로젝트 4] 생성형 AI를 활용한 비정형 문서 기반 RAG 서비스 구축** (10~12주차)
   - 언어모델 파인튜닝 (OpenAI Fine-tuning API, HuggingFace LoRA)
   - 비정형 문서 파싱 (unstructured), 테이블 추출, Vision OCR
 
 ## 전체 커리큘럼 개요
-- **교육 기간** : 2026. 03. 10 ~ 2026. 06. 13
+- **교육 기간** : 2026. 03. 10 ~ 2026. 06. 16
 - **총 학습 시간** : 204시간
 - **핵심 기술** : `Python`, `LangChain`, `RAG`, `Vector DB`, `Agent`, `LangGraph`, `Gradio`
 
